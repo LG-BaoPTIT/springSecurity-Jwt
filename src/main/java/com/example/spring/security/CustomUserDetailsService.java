@@ -1,6 +1,7 @@
 package com.example.spring.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import com.example.spring.entity.Users;
 import com.example.spring.repository.UserRepository;
 
+@Configuration
 public class CustomUserDetailsService implements UserDetailsService{
 	
 	@Autowired
