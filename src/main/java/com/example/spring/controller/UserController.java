@@ -26,8 +26,8 @@ import com.example.spring.entity.*;
 @RequestMapping("/api/v1/auth")
 public class UserController {
 	
-	@Autowired
-	private AuthenticationManager authenticationManager;
+//	@Autowired
+//	private AuthenticationManager authenticationManager;
 	
 	@Autowired
 	private JwtTokenProvider tokenProvider;
@@ -41,21 +41,23 @@ public class UserController {
 	@Autowired 
 	PasswordEncoder encoder;
 	
-	@PostMapping("/sigup")
+	@PostMapping("/signup")
 	public ResponseEntity<?> registerUser(@RequestBody SignupRequest signupRequest){
 		
 		if(userService.existsByUserName(signupRequest.getUserName())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: username is already"));
 		}
 		
-		if(userService.existsByUserName(signupRequest.getEmail())) {
+		if(userService.existsByEmail(signupRequest.getEmail())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: email is already"));
 		}
 		Users user = new Users();
 		user.setUserName(signupRequest.getUserName());
 		user.setPassWord(encoder.encode(signupRequest.getPassWord()));
 		user.setEmail(signupRequest.getEmail());
-		
+		user.setPhone(signupRequest.getPhone());
+		user.setCreated(signupRequest.getCreated());
+		user.setUserStatus(signupRequest.isUserStatus());
 		Set<String> strRole = signupRequest.getListRole();
 		Set<Roles> listRoles = new HashSet<>();
 		

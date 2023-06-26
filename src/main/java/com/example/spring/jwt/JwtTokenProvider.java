@@ -29,7 +29,7 @@ public class JwtTokenProvider {
 	//tao jwt tu thong tin user
 	public String generateToken(CustomUserDetails customUserDetails) {
 		
-				Date now = new Date();
+		Date now = new Date();
 		Date dateExpiration = new Date(now.getTime() + JWT_EXPIRATION);
 				
 		return Jwts.builder()

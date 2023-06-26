@@ -5,11 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.example.spring.entity.Users;
 import com.example.spring.repository.UserRepository;
 
-@Configuration
+@Service
 public class CustomUserDetailsService implements UserDetailsService{
 	
 	@Autowired
